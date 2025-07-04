@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Visor de PDF con Tema Claro/Oscuro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #fff;
+      color: #000;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 20px auto;
+      padding: 15px;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      border: 1px solid #ccc;
+      transition: background 0.3s, color 0.3s, border 0.3s;
+    }
+
+    .container.dark {
+      background: #121212;
+      color: #f1f1f1;
+      border: 1px solid #444;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header h3 {
+      margin: 0;
+      font-size: 20px;
+      color: #990000;
+    }
+
+    .iframe-wrapper {
+      position: relative;
+      padding-bottom: 120%;
+      height: 0;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .iframe-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .download-btn {
+      text-align: right;
+      margin-top: 10px;
+    }
+
+    .download-btn a {
+      background: #990000;
+      color: white;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    label {
+      font-size: 14px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="pdfContainer">
+    <div class="header">
+      <h3>📘 Plan de Estudios</h3>
+      <label>
+        🌗 Modo oscuro:
+        <input type="checkbox" id="toggleTheme">
+      </label>
+    </div>
+
+    <div class="iframe-wrapper">
+      <iframe 
+        src="https://usg.edu.mx/web/content/2807?access_token=3dabe731-fa0a-4703-8526-2b45fcbc9d0f&amp;unique=5bbbf7635fac456903d7f079e223099b9b555ee4&amp;" 
+        allowfullscreen 
+        loading="lazy">
+      </iframe>
+    </div>
+
+    <div class="download-btn">
+      <a href="https://usg.edu.mx/web/content/2807?access_token=3dabe731-fa0a-4703-8526-2b45fcbc9d0f&unique=5bbbf7635fac456903d7f079e223099b9b555ee4&download=true" 
+         target="_blank">
+        📥 Descargar PDF
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById('toggleTheme');
+    const container = document.getElementById('pdfContainer');
+
+    toggle.addEventListener('change', function () {
+      container.classList.toggle('dark', this.checked);
+    });
+  </script>
+
+</body>
+</html>
